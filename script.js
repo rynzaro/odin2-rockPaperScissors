@@ -16,30 +16,13 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase();
     var result;
-    if (playerSelection == computerSelection) {
-        return 0;
 
-    } else if (playerSelection === "rock") {
-        if (computerSelection === "paper") {
-            result = -1;
-        } else {
-            result = 1;
-        }
-    } else if (playerSelection === "paper") {
-        if (computerSelection === "rock") {
-            result = 1;
-        } else {
-            result = -1;
-        }
-    } else if (playerSelection === "scissors") {
-        if (computerSelection === "rock") {
-            result = -1;
-        } else {
-            result = 1;
-        }
-    } else {
-        return "Your choice was invalid, please choose (case insensitive) rock, paper or scissors!";
-    }
+    if (playerSelection == computerSelection) result = 0;
+    else if (playerSelection === "rock") result = computerSelection === "paper" ? -1 : 1;
+    else if (playerSelection === "paper") result = computerSelection === "scissors" ? -1 : 1;
+    else if (playerSelection === "scissors") result = computerSelection === "rock" ? -1 : 1;
+    else result = 0;
+
     return result;
 }
 
@@ -51,11 +34,7 @@ function game() {
 
         playerSelection = prompt("Choose rock, paper or scissors, case insensitive").toLowerCase();
         // while loop until input is in right format
-        while (
-            (playerSelection !== "rock") &&
-            (playerSelection !== "paper") &&
-            (playerSelection !== "scissors")
-        ) {
+        while ( !choices.includes(playerSelection) ) {
             playerSelection = prompt("Choose rock, paper or scissors, case insensitive").toLowerCase();
         }
         computerSelection = getComputerChoice();
@@ -68,7 +47,7 @@ function game() {
             computerScore++; 
             console.log(`You lost! ${playerSelection} lost against ${computerSelection}`);
         } else {
-            console.log(`It's a tie! You both picked ${playerSelection}`);
+            console.log(`It's a tie or wrong input! You (both) picked ${playerSelection}`);
         }
         console.log(`score is ${playerScore} to ${computerScore}`);
     }
