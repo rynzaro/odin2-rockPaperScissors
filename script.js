@@ -79,14 +79,3 @@ function game() {
         console.log(`You lost... but you got ${playerScore} points along the way!`);
     }
 }
-
-function test() {
-    function printAndPlay(playerChoice) {
-        console.log(`Player chooses ${playerChoice}`);
-        console.log(playRound(playerChoice, getComputerChoice()));
-    }
-
-    printAndPlay("rock");
-    printAndPlay("rOCk");
-    printAndPlay("rokk");
-}
